@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #333;
+}
+.top{
+    display: inline-block;
+    color: white;
+    font-size: 14pt;
+}
+button {
+    left: 50vw;
+    width: 100px;
+    height: 40px;
+}
+
+canvas{
+  position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid black;
+    max-width: 100%;
+    max-height: 100%;
+}
+#backgroundImage{
+    display: none;
+}
