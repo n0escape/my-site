@@ -443,16 +443,16 @@ function faq(){
 
     ctx.fillText("Важно!", canvas.width/2, 340 );
     ctx.fillText("Вы в космосе поэтому переодически добавляйте газу чтобы лететь, иначе СМЭРТЬ", canvas.width/2, 380 );
-    ctx.fillText("Следите за уровнем топлива, иначе СМЭРТЬ", canvas.width/2, 380 );
-    ctx.fillText("Следите также чтобы ракета не вылетела за нижнюю границу, иначе СМЭРТЬ", canvas.width/2, 420 );
+    ctx.fillText("Следите за уровнем топлива, иначе СМЭРТЬ", canvas.width/2, 420 );
+    ctx.fillText("Следите также чтобы ракета не вылетела за нижнюю границу, иначе СМЭРТЬ", canvas.width/2, 460 );
 
-    ctx.fillText("Управление", canvas.width/2, 500 );
-    ctx.fillText("W - полет вперед / добавить газку", canvas.width/2, 540 );
-    ctx.fillText("S - движение влево / сбавить обороты", canvas.width/2, 580 );
-    ctx.fillText("A - движение влево", canvas.width/2, 620 );
-    ctx.fillText("D - движение вправо", canvas.width/2, 660 );
-    ctx.fillText("Space - перезапуск уровня", canvas.width/2, 700 );
-    ctx.fillText("Escape - пауза", canvas.width/2, 740 );
+    ctx.fillText("Управление", canvas.width/2, 540 );
+    ctx.fillText("W - полет вперед / добавить газку", canvas.width/2, 580 );
+    ctx.fillText("S - движение влево / сбавить обороты", canvas.width/2, 620 );
+    ctx.fillText("A - движение влево", canvas.width/2, 660 );
+    ctx.fillText("D - движение вправо", canvas.width/2, 700 );
+    ctx.fillText("Space - перезапуск уровня", canvas.width/2, 740 );
+    ctx.fillText("Escape - пауза", canvas.width/2, 780 );
 
-    ctx.fillText("Удачи!", canvas.width/2, 820 );
+    ctx.fillText("Удачи!", canvas.width/2, 840 );
 }
