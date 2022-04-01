@@ -61,28 +61,35 @@ function start(){
             this.gravity = 1;
         }
         draw(context){
-
-//            ctx.fillStyle = "green";
-//            ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.fillStyle = "green";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
 
             //полное изображение this.image, this.x, this.y, this.width, this.height
             //обрезаем изображение по фрейму this.image, sx, sy, this.width, this.height, this.x, this.y, this.width, this.height
-            context.drawImage(this.image,
-                              this.frameX * this.width,
-                              this.frameY * this.height,
-                              this.width, this.height,
-                              this.x, this.y, this.width, this.height);
+//            context.drawImage(this.image,
+//                              this.frameX * this.width,
+//                              this.frameY * this.height,
+//                              this.width, this.height,
+//                              this.x, this.y, this.width, this.height);
         }
         update(input, deltaTime, enemies, gate){
             //коллизия - просчет столкновения объектов (на основе кругов)
             enemies.forEach(enemy => {
-                let dx = (enemy.x + enemy.width/2) - (this.x + this.width/2);
-                let dy = (enemy.y + enemy.height/2) - (this.y + this.width/2);
-                let dist = (Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2))) + 20;
-                if (dist < enemy.width/2 + this.width/2){
+                if (this.x + this.width > enemy.x &&
+                    this.x < enemy.x + enemy.width &&
+                    this.y + this.height > enemy.y &&
+                    this.y < enemy.y + enemy.height){
                     gameOver = true;
                 }
             })
+//            enemies.forEach(enemy => {
+//                let dx = (enemy.x + enemy.width/2) - (this.x + this.width/2);
+//                let dy = (enemy.y + enemy.height/2) - (this.y + this.width/2);
+//                let dist = (Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2))) + 20;
+//                if (dist < enemy.width/2 + this.width/2){
+//                    gameOver = true;
+//                }
+//            })
             gates.forEach(gate => {
                 let dx = (gate.x + gate.width/2) - (this.x + this.width/2);
                 let dy = (gate.y + gate.height/2) - (this.y + this.width/2);
@@ -92,16 +99,16 @@ function start(){
                 }
             })
             //анимация по кадрам
-            if (this.frameTimer > this.frameInterval){
-                if(this.frameX >= this.maxFrame){
-                    this.frameX = 0;
-                } else {
-                    this.frameX++;
-                }
-                this.frameTimer = 0;
-            } else {
-                this.frameTimer += deltaTime;
-            }
+//            if (this.frameTimer > this.frameInterval){
+//                if(this.frameX >= this.maxFrame){
+//                    this.frameX = 0;
+//                } else {
+//                    this.frameX++;
+//                }
+//                this.frameTimer = 0;
+//            } else {
+//                this.frameTimer += deltaTime;
+//            }
             //движение
             if (input.keys.indexOf('KeyD') > -1){
                 this.speed = 5;
@@ -186,8 +193,16 @@ function start(){
             this.width = 160;
             this.height = 119;
 
+            this.randY = Math.floor(Math.random() * ((this.gameHeight - this.height)-(this.gameHeight/2)) + (this.gameHeight/2));
+
+            while(
+                this.randY > canvas.height *(3/4) - this.height- 50 &&
+                this.randY < canvas.height *(3/4) + 50){
+                    this.randY = Math.floor(Math.random() * ((this.gameHeight - this.height)-(this.gameHeight/2)) + (this.gameHeight/2));
+            }
             this.x = this.gameWidth;
-            this.y = Math.floor(Math.random() * ((this.gameHeight - this.height)-(this.gameHeight/2)) + (this.gameHeight/2));
+            this.y = this.randY;
+
             this.frameX = 0;
             this.frameY = 0;
             this.maxFrame = 5;   //колличесво кадров в изображении
@@ -198,13 +213,22 @@ function start(){
             this.flagToDelete = false;
         }
         draw(context){
+//            ctx.fillStyle = "pink";
+//            ctx.fillRect(0, canvas.height/2, canvas.width, canvas.height);
+//
+//            ctx.fillStyle = "yellow";
+//            ctx.fillRect(0, (canvas.height *(3/4)) - 50, canvas.width, 100);
+//            canvas.x + (canvas.height *(3/4)) + 50
+
+            ctx.fillStyle = "red";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
             //полное изображение this.image, this.x, this.y, this.width, this.height
             //обрезаем изображение по фрейму this.image, sx, sy, this.width, this.height, this.x, this.y, this.width, this.height
-            context.drawImage(this.image,
-                              this.frameX * this.width,
-                              0,
-                              this.width, this.height,
-                              this.x, this.y, this.width, this.height);
+//            context.drawImage(this.image,
+//                              this.frameX * this.width,
+//                              0,
+//                              this.width, this.height,
+//                              this.x, this.y, this.width, this.height);
         }
         update(deltaTime){
             //переключение кадров
@@ -244,12 +268,11 @@ function start(){
             enemy.draw(ctx);
             enemy.update(deltaTime);
         });
-        //оставляем в мессиве только не отмеченных врагов
+        //оставляем в массиве только не отмеченных врагов
         enemies = enemies.filter(enemy => !enemy.flagToDelete)
         } else {
             enemies = enemies.filter(enemy => enemy.flagToDelete)
             handlerGate();
-
         }
     }
 
@@ -333,8 +356,8 @@ function start(){
     let lastTime = 0;        //значение времени из предыдущего вызова цикла
     let enemyTimer = 0;      //значение нудя до предела (enemyInterval)
                              //сбрасывается до нуля при достижении предела
-    let enemyInterval = 500;//интервал добавления врага
-    let randomEnemyInterval = Math.random() * 1000 + 500;
+    let enemyInterval = 600;//интервал добавления врага
+    let randomEnemyInterval = Math.random() * 1000 + 700;
 
     function animate(timeStamp){
         //разница во времени между предыдущим циклом и текущим
