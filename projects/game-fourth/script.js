@@ -6,12 +6,14 @@ function start(){
     let enemies = [];
     let fuels = [];
     let planetArr = [];
+    let playerArr = [];
 
     let score = 1000;
     let gameOver = false;
     let win = false;
     let pause = false;
-    let timer = 61;
+    let timer = 60;
+    let turbo = 0;
 
     class InputHandler {
         constructor(){
@@ -21,7 +23,8 @@ function start(){
                 if ((   e.code === 'KeyS'||
                         e.code === 'KeyW'||
                         e.code === 'KeyA'||
-                        e.code === 'KeyD')
+                        e.code === 'KeyD'||
+                        e.code === 'ShiftLeft')
                         && this.keys.indexOf(e.code) === -1){
                     this.keys.push(e.code);
                 } else if(e.code === 'Space') restartGame();
@@ -31,7 +34,8 @@ function start(){
                 if ((   e.code === 'KeyS'||
                         e.code === 'KeyW'||
                         e.code === 'KeyA'||
-                        e.code === 'KeyD')){
+                        e.code === 'KeyD'||
+                        e.code === 'ShiftLeft')){
                     this.keys.splice(this.keys.indexOf(e.code), 1);
                 }
             });
@@ -77,7 +81,7 @@ function start(){
 //                              this.width, this.height,
 //                              this.x, this.y, this.width, this.height);
         }
-        update(input, deltaTime, enemies){
+        update(input, deltaTime){
             //коллизия - просчет столкновения объектов (на основе кругов)
             enemies.forEach(enemy => {
                 if (this.x + this.width > enemy.x &&
@@ -146,24 +150,31 @@ function start(){
             }
             //вертикальное движение
             this.x += this.speed;
-            //ограничение движения по вертикали
-            if (this.x < 0){this.x = 0;}
+            //ограничение движения по горизонтали
+            if (this.x < 0)
+                this.x = 0;
             else if (this.x > this.gameWidth - this.width)
-            {this.x = this.gameWidth - this.width}
+                this.x = this.gameWidth - this.width
 
             //горизонтальное движение
             this.y += this.vy;
             //гравитация
             this.y += this.gravity;
 
-            //ограничение движения по горизонтали
-            //создание "земли"
-            if (this.y > this.gameHeight - this.height) this.y = this.gameHeight - this.height
+            //ограничение движения по вертикали
+            if (this.y < 0)
+                this.y = 0;
+            else if (this.y > this.gameHeight - this.height)
+                this.y = this.gameHeight - this.height;
         }
         restart(){
             this.x = canvas.width/2;
             this.y = canvas.height/2;
         }
+    }
+    function handlerPlayer(){
+        player.draw(ctx);
+        player.update(input);
     }
 
     class Background {
@@ -231,7 +242,7 @@ function start(){
             this.height = 100;
 
             this.x = Math.floor(Math.floor(Math.random() * (this.gameWidth-this.width)) / 100) * 100;
-            this.y = (Math.floor(Math.floor(Math.random()*(800-0+1)+0) / 100) * 100) - 800;
+            this.y = (Math.floor(Math.floor(Math.random()*(1500-0+1)+0) / 100) * 100) - 1500;
 
             this.speed = 8;
             this.flagToDelete = false;
@@ -240,7 +251,7 @@ function start(){
             context.fillStyle = "red"
             context.fillRect(this.x, this.y, this.width, this.height)
         }
-        update(deltaTime){
+        update(){
 
             this.y += this.speed;
             //помечаем пройденных врагов
@@ -258,7 +269,7 @@ function start(){
             this.height = 100;
 
             this.randX = Math.floor(Math.floor(Math.random() * (this.gameWidth-this.width)) / 100) * 100;
-            this.randY = (Math.floor((Math.floor(Math.random()*(800-0+1)+0)) / 100) * 100) - 800;
+            this.randY = (Math.floor((Math.floor(Math.random()*(1500-0+1)+0)) / 100) * 100) - 1500;
 
             enemies.forEach(enemy => {
                 while(
@@ -268,7 +279,7 @@ function start(){
                     this.randY < enemy.y + enemy.height) {
 
                 this.randX = Math.floor(Math.floor(Math.random() * (this.gameWidth-this.width)) / 100) * 100;
-                this.randY = (Math.floor((Math.floor(Math.random()*(800-0+1)+0)) / 100) * 100) - 800;
+                this.randY = (Math.floor((Math.floor(Math.random()*(1500-0+1)+0)) / 100) * 100) - 1500;
 
 
             } })
@@ -282,7 +293,7 @@ function start(){
             context.fillStyle = "aqua"
             context.fillRect(this.x, this.y, this.width, this.height)
         }
-        update(deltaTime){
+        update(){
 
             this.y += this.speed;
             //помечаем пройденных врагов
@@ -298,15 +309,16 @@ function start(){
         if(enemyTimer > enemyInterval){
             //когда таймер доходит до предела,
             //создаем нового врага и сбрасываем таймер до 0
-            for(let i = 0; i <  Math.floor(Math.random() * (15 - 10))+10; i++){
+            for(let i = 0; i <  Math.floor(Math.random() * (15 - 12))+12; i++){
                 enemies.push(new Enemy(canvas.width, canvas.height));
             }
-            fuels.push(new Fuel(canvas.width, canvas.height));
-            fuels.push(new Fuel(canvas.width, canvas.height));
+            for(let i = 0; i < 3; i++){
+                fuels.push(new Fuel(canvas.width, canvas.height));
+            }
 
             randomEnemyInterval = Math.random() * 1000 + 500;
             enemyTimer = 0;
-            timer--;
+
         } else {
             //отсчет до следующего создания врага
             enemyTimer += deltaTime;
@@ -338,6 +350,9 @@ function start(){
         context.textAlign = 'left';
         context.fillText('Fuel: ' + score, 20, 50);
 
+        context.textAlign = 'center';
+        context.fillText('Turbo: ' + turbo + '%',(canvas.width/2) + 20, 50);
+
         context.textAlign = 'right';
         context.fillText('Time: ' + timer, canvas.width - 20, 50);
 
@@ -356,7 +371,7 @@ function start(){
             context.fillText('Victory! Congratulations!', canvas.width/2, 250);
         }else if (pause){
             context.font = '80px';
-            context.fillText('Pause', canvas.width/2, 250);
+            context.fillText('Pause', (canvas.width/2)+40, 250);
         }
     }
 
@@ -371,6 +386,7 @@ function start(){
         planetArr.length = 0;
         timer = 60;
         score = 1000;
+        turbo = 0;
         win = false;
         animate();
     }
@@ -383,6 +399,20 @@ function start(){
         }
     }, 0.08 * 1000);
 
+    let timeToStop = setInterval( () =>{
+        timer--;
+        if (timer == 0){
+            clearInterval(timeToStop);
+        }
+    }, 1 * 1000);
+
+    let collectTurbo = setInterval( () =>{
+        if (turbo < 100){
+            turbo += 20;
+        } else{
+            turbo = 100;
+        }
+    }, 1 * 1000);
 
     const input = new InputHandler();
     const player = new Player(canvas.width, canvas.height);
@@ -392,7 +422,7 @@ function start(){
     let lastTime = 0;        //значение времени из предыдущего вызова цикла
     let enemyTimer = 0;      //значение нудя до предела (enemyInterval)
                              //сбрасывается до нуля при достижении предела
-    let enemyInterval = 2000;//интервал добавления врага
+    let enemyInterval = 3000;//интервал добавления врага
     let randomEnemyInterval = Math.random() * 1000 + 500;
 
     function animate(timeStamp){
@@ -408,10 +438,17 @@ function start(){
         background.draw(ctx);
         background.update();
 
-        player.draw(ctx);
-        player.update(input, deltaTime, enemies);
-
         handlerEnemies(deltaTime);
+
+        if (input.keys.indexOf('ShiftLeft') > -1 && turbo == 100){
+            playerArr.length = 0;
+            player.y -= 200;
+            turbo = 0;
+
+        } else {
+            playerArr.push(player);
+            handlerPlayer();
+        }
 
         displayStatusText(ctx);
 
@@ -436,23 +473,27 @@ function faq(){
     ctx.fillStyle = 'black';
     ctx.font = '40px Leto Text Sans';
 
-    ctx.fillText("Правила игры", canvas.width/2, 130 );
-    ctx.fillText("Цель игры заключается в том чтобы избежать астероидов и высадится на безопасной планете", canvas.width/2, 170 );
-    ctx.fillText("Чтобы долететь, попутно надо собирать баночки с топливом (синие квадратики)", canvas.width/2, 210 );
-    ctx.fillText("По истечении отсчета времени (справа сверху), появится планета, куда надо долететь", canvas.width/2, 250 );
+    ctx.fillText("Правила игры", canvas.width/2, 60 );
+    ctx.fillText("Цель игры заключается в том чтобы избежать астероидов и высадится на безопасной планете", canvas.width/2, 100 );
+    ctx.fillText("Чтобы долететь, попутно надо собирать баночки с топливом (синие квадратики)", canvas.width/2, 140 );
+    ctx.fillText("По истечении отсчета времени (справа сверху), появится планета, куда надо долететь", canvas.width/2, 180 );
 
-    ctx.fillText("Важно!", canvas.width/2, 340 );
-    ctx.fillText("Вы в космосе поэтому переодически добавляйте газу чтобы лететь, иначе СМЭРТЬ", canvas.width/2, 380 );
-    ctx.fillText("Следите за уровнем топлива, иначе СМЭРТЬ", canvas.width/2, 420 );
-    ctx.fillText("Следите также чтобы ракета не вылетела за нижнюю границу, иначе СМЭРТЬ", canvas.width/2, 460 );
+    ctx.fillStyle = 'red';
+    ctx.fillText("Важно!", canvas.width/2, 260 );
+    ctx.fillStyle = 'black';
+    ctx.fillText("1) Чтобы использовать турбо скачок, нужно чтобы показатель турбо был равен 100%", canvas.width/2, 300 );
+    ctx.fillText("2) Вы в космосе поэтому переодически добавляйте газу чтобы лететь, иначе СМЭРТЬ", canvas.width/2, 340 );
+    ctx.fillText("3) Следите за уровнем топлива, иначе СМЭРТЬ", canvas.width/2, 380 );
+    ctx.fillText("4) Следите также чтобы ракета не вылетела за нижнюю границу, иначе СМЭРТЬ", canvas.width/2, 420 );
 
-    ctx.fillText("Управление", canvas.width/2, 540 );
-    ctx.fillText("W - полет вперед / добавить газку", canvas.width/2, 580 );
-    ctx.fillText("S - движение влево / сбавить обороты", canvas.width/2, 620 );
-    ctx.fillText("A - движение влево", canvas.width/2, 660 );
-    ctx.fillText("D - движение вправо", canvas.width/2, 700 );
+    ctx.fillText("Управление", canvas.width/2, 500 );
+    ctx.fillText("W - полет вперед / добавить газку", canvas.width/2, 540 );
+    ctx.fillText("S - движение влево / сбавить обороты", canvas.width/2, 580 );
+    ctx.fillText("A - движение влево", canvas.width/2, 620 );
+    ctx.fillText("D - движение вправо", canvas.width/2, 660 );
+    ctx.fillText("L Shift - пространсвенный скачек вперед", canvas.width/2, 700 );
     ctx.fillText("Space - перезапуск уровня", canvas.width/2, 740 );
     ctx.fillText("Escape - пауза", canvas.width/2, 780 );
 
-    ctx.fillText("Удачи!", canvas.width/2, 840 );
+    ctx.fillText("Удачи!", canvas.width/2, 860 );
 }
