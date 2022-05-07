@@ -12,7 +12,7 @@ var musicPlaying = false;
 var music = document.getElementById("myPlayer");
 $("#myPlayer").bind("ended", function(){
     current++;
-    music.src = "/audio/" + current%6 + ".mp3";
+    music.src = "./audio/" + current%6 + ".mp3";
     music.load();
     music.play();
 });
