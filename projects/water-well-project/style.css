@@ -1,1 +1,145 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+#anchorAboutUs, #anchorPrice, #anchorContacts, #anchorContactUs {
+    display: block;
+    visibility: hidden;
+    height: 10vw;
+    margin-top: -10vw;
+}
+#pageHeader {
+    top: 0;
+    max-width: 100vw;
+    height: 10vw;
+    background-color: brown;
+    opacity: 50%;
+    position: sticky;
+}
+#pageHeader .container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr 2fr;
+}
+#pageHeader .container > div {
+    border: 1px solid black;
+}
+/*Header Logo*/
+#pageHeader .container .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#pageHeader .container .logo a {
+    position: absolute;
+}
+#pageHeader .container .logo a > img {
+    height: 10vw;
+}
+/*Header Links*/
+#pageHeader .container .links {
+    display: flex;
+    align-items: center;
+}
+#pageHeader .container .links ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+}
+#pageHeader .container .links ul li > a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 1.5em;
+}
+/*Header Configs*/
+#pageHeader .container .configs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#pageHeader .container .configs img{
+    width: 3vw;
+}
+#pageHeader .container .configs .hiddenLanguageBox{
+    display: none;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 5%;
+    background-color: gray;
+    top: 10vw;
+    width: auto;
+}
+#pageHeader .container .configs .hiddenLanguageBox ul{
+    list-style-type: none;
+    font-size: 1em;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 0;
+}
+#pageHeader .container .configs .hiddenLanguageBox ul > li{
+    padding: 0px 5px;
+    margin: 5px;
+}
 
+#aboutUs {
+    max-width: 100vw;
+    height: 100vh;
+    background-color: chartreuse;
+}
+
+#price {
+    max-width: 100vw;
+    height: 100vh;
+    background-color: blue;
+}
+
+#contacts {
+    max-width: 100vw;
+    height: 100vh;
+    background-color: green;
+}
+
+#contactUs {
+    max-width: 100vw;
+    height: 70vh;
+    background-color: peru;
+}
+#contactUs .container > form{
+    float: right;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#pageFooter {
+    max-width: 100vw;
+    height: 30vh;
+    background-color: purple;
+}
+
+
+@media (max-width: 950px) {
+    #pageHeader .container {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 4fr 3fr;
+    }
+    #pageHeader .container .links {
+        display: none;
+    }
+}
