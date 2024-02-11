@@ -1,3 +1,16 @@
+h1 {
+    font-weight: bold;
+    margin: 0;
+}
+#contacts .container .description, 
+#price .container .description,
+#aboutUs .container .details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 html{
     scroll-behavior: smooth;
 }
