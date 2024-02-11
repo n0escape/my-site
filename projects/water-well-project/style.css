@@ -10,8 +10,8 @@ body{
 #anchorAboutUs, #anchorPrice, #anchorContacts, #anchorContactUs {
     display: block;
     visibility: hidden;
-    height: 10vw;
-    margin-top: -10vw;
+    height: 7vw;
+    margin-top: -7vw;
 }
 /*Header General*/
 #pageHeader {
@@ -25,7 +25,8 @@ body{
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 5fr 2fr;
+    /* grid-template-columns: 1fr 5fr 2fr; */
+    grid-template-columns: 1fr 7fr;
 }
 #pageHeader .container > div {
     border: 1px solid black;
@@ -37,8 +38,7 @@ body{
     align-items: center;
 }
 #pageHeader .container .logo a, #pageHeader .container .logo a img {
-    width: 50px;
-    height: 50px;
+    width: 70%;
 }
 /*Header Links*/
 #pageHeader .container .hiddenMenu {
@@ -67,7 +67,8 @@ body{
 }
 /*Header Configs*/
 #pageHeader .container .configs {
-    display: flex;
+    display: none;
+    /* display: flex; */
     justify-content: space-around;
     align-items: center;
 }
@@ -291,6 +292,9 @@ body{
     }
 }
 @media (max-width: 730px) {
+    #pageHeader .container .logo a, #pageHeader .container .logo a img {
+        width: 55px;
+    }
     #pageHeader {
         height: 60px;
     }
