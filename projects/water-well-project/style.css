@@ -2,8 +2,7 @@ h1 {
     font-weight: bold;
     margin: 0;
 }
-#contacts .container .description, 
-#price .container .description,
+#contacts .container .description,
 #aboutUs .container .details,
 #ourWorks .container .description {
     display: flex;
@@ -25,8 +24,9 @@ body {
     position: fixed;
     bottom: 10px;
     right: 10px;
+    z-index: 1000000;
 }
-#anchorAboutUs, #anchorPrice, 
+#anchorAboutUs, #anchorServices, 
 #anchorContacts, #anchorContactUs,
 #anchorOurWorks {
     display: block;
@@ -41,6 +41,7 @@ body {
     height: 7vw;
     background-color: brown;
     position: sticky;
+    z-index: 1000000;
 }
 #pageHeader .container {
     width: 100%;
@@ -167,10 +168,28 @@ body {
 }
 
 
-#price {
+#services {
     max-width: 100vw;
     height: 100vh;
     background-color: blue;
+}
+#services .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#services .container > div {
+    width: 200px;
+    height: 300px;
+    border: 2px solid darkgray;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
 }
 
 #ourWorks {

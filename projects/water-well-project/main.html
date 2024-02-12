@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Лендінг сайт про свердловини</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   </head>
 
   <body>
@@ -12,6 +14,7 @@
         <img src="source/pageUp.png" alt="Page Up" width="50px">
       </a>
     </div>
+
     <header id="pageHeader">
         <div class="container">
             <div class="logo">
@@ -124,11 +127,38 @@
         </div>
     </section>
 
-    <div id="anchorPrice"></div>
-    <section id="price">
+    <div id="anchorServices"></div>
+    <section id="services">
       <div class="container">
-        <div class="description">
-          <h1>Блоки з переліком різних послуг</h1>
+        <div>
+          <h1>
+            Послуга
+          </h1>
+          <button>Детальніше</button>
+        </div>
+        <div>
+          <h1>
+            Послуга
+          </h1>
+          <button>Детальніше</button>
+        </div>
+        <div>
+          <h1>
+            Послуга
+          </h1>
+          <button>Детальніше</button>
+        </div>
+        <div>
+          <h1>
+            Послуга
+          </h1>
+          <button>Детальніше</button>
+        </div>
+        <div>
+          <h1>
+            Послуга
+          </h1>
+          <button>Детальніше</button>
         </div>
       </div>
     </section>
@@ -138,6 +168,7 @@
       <div class="container">
         <div class="description">
           <h1>Блоки з результатами роботи + можливо карта з точками виконання</h1>
+          <div id="map" style="width: 600px; height: 400px;"></div>
         </div>
       </div>
     </section>
@@ -291,5 +322,30 @@
         </div>
     </footer>
     <script type="text/javascript" src="script.js"></script>
+    <script>
+      // Инициализация карты Украины
+      var map = L.map('map').setView([49.8397, 24.0297], 6); // Координаты Украины и начальный масштаб
+  
+      // Добавление плитки карты
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri'
+      }).addTo(map);
+
+      
+      // Добавление меток
+      var markers = [
+          { coords: [50.4501, 30.5234], title: "Киев" },
+          { coords: [49.8397, 24.0297], title: "Львов" },
+          { coords: [49.99366360883256, 36.29211955297298], title: "Французский бульвар", description: "test description"}
+          // Добавьте другие метки здесь
+      ];
+  
+      markers.forEach(function(markerItem) {
+          let marker = L.marker(markerItem.coords).addTo(map);
+          'description' in markerItem
+          ? marker.bindPopup("<b>" + markerItem.title + "</b><br>" + markerItem.description)
+          : marker.bindPopup("<b>" + markerItem.title + "</b>")
+        });
+  </script>
   </body>
 </html>
