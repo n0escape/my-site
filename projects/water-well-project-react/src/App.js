@@ -10,15 +10,16 @@ import instagramIcon from "./assets/socialMedias/instagram.png"
 import telegramIcon from "./assets/socialMedias/telegram.png"
 import googleIcon from "./assets/socialMedias/google.png"
 
-import MapComponent from './importedComponents/Map/Map';
+import MapFrame from './importedComponents/Map/Map.jsx';
 import './utils/pageUpTrick'
+import ContactForm from './components/ContactForm/ContactForm.jsx';
 
 const App = () => {
   return (
     <div className="generalOutput">
-      <MapComponent />
+      <MapFrame />
       <div class="pageUp">
-        <a href="#">
+        <a href="#.">
           <img src={pageUp} alt="Page Up" width="50px" />
         </a>
       </div>
@@ -26,7 +27,7 @@ const App = () => {
       <header id="pageHeader">
           <div class="container">
               <div class="logo">
-                <a href="#">
+                <a href="#.">
                   <img src={companyLogo} alt="Company logo" />
                 </a>
               </div>
@@ -37,7 +38,7 @@ const App = () => {
                     <a href="#anchorAboutUs">Про нас</a>
                   </li>
                   <li>
-                    <a href="#anchorPrice">Прайс</a>
+                    <a href="#anchorServices">Прайс</a>
                   </li>
                   <li>
                     <a href="#anchorOurWorks">Наші роботи</a>
@@ -176,7 +177,7 @@ const App = () => {
         <div class="container">
           <div class="description">
             <h1>Блоки з результатами роботи + можливо карта з точками виконання</h1>
-            <MapComponent />
+            <MapFrame />
           </div>
         </div>
       </section>
@@ -195,7 +196,9 @@ const App = () => {
       <div id="anchorContactUs"></div>
       <section id="contactUs">
         <div class="container">
-          <form>
+          <ContactForm />
+
+          {/* <form>
             <label>Ім'я</label>
             <input type="text" placeholder="Ім'я" />
             <label>Телефон</label>
@@ -205,7 +208,8 @@ const App = () => {
             <label>Текст повідомлення</label>
             <textarea name="message" id="message" cols="30" rows="10"></textarea>
             <input type="submit" value="Відправити"/>
-          </form>
+          </form> */}
+
         </div>
       </section>
 
@@ -223,52 +227,52 @@ const App = () => {
               <h2>Наші посуги</h2>
               <ul class="servicesList">
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     Послуга
                   </a>
                 </li>
@@ -278,49 +282,49 @@ const App = () => {
               <h2>Наші контакти</h2>
               <ul class="phones">
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     +380-xxx-xx-xx
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     +380-xxx-xx-xx
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     +380-xxx-xx-xx
                   </a>
                 </li>
               </ul>
               <ul class="socialMedias">
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     <img src={facebookIcon} alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     <img src={instagramIcon} alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     <img src={telegramIcon} alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     <img src={googleIcon} alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     <img src={lightThemeIcon} alt="" />
                   </a>
                 </li>
                 <li>
-                  <a href="#">
+                  <a href="#.">
                     <img src={lightThemeIcon} alt="" />
                   </a>
                 </li>

@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-let MapComponent = () => {
+let MapFrame = () => {
   const markers = [
     { coords: [50.4501, 30.5234], title: "Киев" },
     { coords: [49.8397, 24.0297], title: "Львов" },
@@ -36,4 +36,4 @@ let MapComponent = () => {
 }
 
 
-export default MapComponent;
+export default MapFrame;
