@@ -17,7 +17,6 @@ import ContactForm from './components/ContactForm/ContactForm.jsx';
 const App = () => {
   return (
     <div className="generalOutput">
-      <MapFrame />
       <div class="pageUp">
         <a href="#.">
           <img src={pageUp} alt="Page Up" width="50px" />
