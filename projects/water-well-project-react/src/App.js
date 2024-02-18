@@ -13,9 +13,10 @@ import ScrollToHash from './utils/scrollToHash.js';
 import ScrollToTop from './generalComponents/ScrollToTop/ScrollToTop.jsx';
 
 const App = () => {
+  const basename = process.env.REACT_APP_BASE_URL || '/';
   return (
     <div>
-      <Router>
+      <Router basename={basename}>
         <ScrollToHash />
         <ScrollToTop />
         <Header />

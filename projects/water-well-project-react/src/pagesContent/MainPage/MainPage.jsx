@@ -108,7 +108,7 @@ const MainPage = () => {
         <div class="container">
           <div class="description">
             <h1>Блоки з результатами роботи + можливо карта з точками виконання</h1>
-            <MapFrame />
+            <MapFrame content='works'/>
           </div>
         </div>
       </section>
@@ -120,6 +120,7 @@ const MainPage = () => {
             <h1>
               Усі контактні дані (телефон, соц мережі) + карта з адресою
             </h1>
+            <MapFrame content='office'/>
           </div>
         </div>
       </section>
