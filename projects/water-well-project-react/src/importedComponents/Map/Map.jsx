@@ -26,15 +26,15 @@ const MapPlaceholder = () => {
   )
 }
 
-const MapFrame = () => {
-  const startPosition = [49.0, 31.0]; // Начальное положение карты
-  const markersWorks = [
-    { position: [50.45, 30.5233], title: 'Киев', description:'столица Украины' },
-    { position: [48.45, 35.0167], title: 'Днепр' },
-    { position: [46.48, 30.7326], title: 'Одесса' },
-    // Добавьте больше маркеров при необходимости
-  ];
+const startPosition = [49.0, 31.0]; // Начальное положение карты
+const markersWorks = [
+  { position: [50.45, 30.5233], title: 'Киев', description:'столица Украины' },
+  { position: [48.45, 35.0167], title: 'Днепр' },
+  { position: [46.48, 30.7326], title: 'Одесса' },
+  // Добавьте больше маркеров при необходимости
+];
 
+const MapFrame = () => {
   return ( 
     // Убедитесь, что установлены высота и ширина контейнера карты, иначе карта не будет отображаться
       <MapContainer center={startPosition} zoom={5} style={{height: "50vh", width: "90vw"}} placeholder={<MapPlaceholder />}>

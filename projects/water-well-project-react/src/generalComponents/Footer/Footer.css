@@ -1,0 +1,90 @@
+#pageFooter {
+    max-width: 100vw;
+    height: 40vh;
+    background-color: gray;
+}
+#pageFooter ul {
+    list-style-type: none; 
+}
+#pageFooter .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#pageFooter .container .logo {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-grow: 0;
+    padding-left: 10px;
+    width: 200px;
+}
+#pageFooter .container .services {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding-left: 40px;
+}
+#pageFooter .container .services h2 {
+    padding: 0;
+    flex-grow: 0;
+}
+#pageFooter .container .services .servicesList {
+    padding: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 25vh;
+}
+#pageFooter .container .services .servicesList li {
+    margin: 10px 15px 10px 0;
+}
+#pageFooter .container .services .servicesList a {
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bold;
+    color: black;
+}
+#pageFooter .container .ourContacts {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 0;
+    padding-right: 10px;
+}
+#pageFooter .container .ourContacts h2 {
+    flex-grow: 0;
+}
+#pageFooter .container .ourContacts .phones {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+#pageFooter .container .ourContacts .phones li > a{
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-size: larger;
+}
+#pageFooter .container .ourContacts .socialMedias {
+    flex-grow: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0;
+}
+#pageFooter .container .ourContacts .socialMedias img {
+    width: 30px;
+    display: flex;
+    justify-content: space-around;
+    margin: 5px;
+}
