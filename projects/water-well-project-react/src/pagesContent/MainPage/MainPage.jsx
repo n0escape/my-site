@@ -8,14 +8,15 @@ import { useEffect, useState } from 'react';
 const MainPage = () => {
 
   const [services, setServices] = useState([]);
+  const [socialMedia, setSocialMedia] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(process.env.PUBLIC_URL +'/data.json');
         const data = await response.json();
-        setServices(data.services); // Предполагается, что массив объектов находится в поле Services файла data.json
-        console.log(data.services)
+        setServices(data.services); // Предполагается, что массив объектов services находится в поле services файла data.json
+        setSocialMedia(data.socialMedia)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -24,6 +25,8 @@ const MainPage = () => {
     fetchData();
   }, []);
 
+  console.log(socialMedia)
+  
   return (
     <div className="generalOutput">
 

@@ -21,9 +21,9 @@ const App = () => {
         <ScrollToTop />
         <Header />
         <Routes>
-          <Route exact path="/" element={<MainPage />} />
-          <Route path="/service/*" element={<ServicePage />} />
-          <Route path="/order" element={<OrderPage />} />
+          <Route exact path={basename} element={<MainPage />} />
+          <Route path={basename + "/service/:idFromUrl"} element={<ServicePage />} />
+          <Route path={basename + "/order"} element={<OrderPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
