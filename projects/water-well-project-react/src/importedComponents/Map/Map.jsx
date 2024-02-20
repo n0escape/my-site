@@ -64,7 +64,6 @@ const MapTemplate = ({startPos, zoomSize, heightContainer, widthContainer, marke
 }
 
 const MapFrame = ({content}) => {
-  console.log(content)
   switch (content) {
     case 'office':
     return <MapTemplate startPos={officePosition[0].position} zoomSize={13} heightContainer={'60vh'} widthContainer={'40vw'} markers={officePosition}/>

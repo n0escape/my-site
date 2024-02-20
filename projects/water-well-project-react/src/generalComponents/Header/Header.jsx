@@ -1,6 +1,5 @@
 import './Header.css'
 import companyLogo from './../../assets/general/logo-template.png'
-import { basePath } from '../../App';
 import { Link } from 'react-router-dom';
 
 // import lightThemeIcon from "./../../assets/header/configs/light.png"
@@ -11,7 +10,9 @@ const Header = () => {
       <header id="pageHeader">
         <div className="container">
             <div className="logo">
-              <Link to={basePath + "/"}>
+              <Link to="/"
+              //link to the top
+              >
                 <img src={companyLogo} alt="Company logo" />
               </Link>
             </div>
@@ -21,19 +22,19 @@ const Header = () => {
             <div className="links">
               <ul>
                 <li>
-                  <Link to={basePath + "#anchorAboutUs"}>Про нас</Link>
+                  <Link to="/#anchorAboutUs">Про нас</Link>
                 </li>
                 <li>
-                  <Link to={basePath + "#anchorServices"}>Прайс</Link>
+                  <Link to="/#anchorServices">Прайс</Link>
                 </li>
                 <li>
-                  <Link to={basePath + "#anchorOurWorks"}>Наші роботи</Link>
+                  <Link to="/#anchorOurWorks">Наші роботи</Link>
                 </li>
                 <li>
-                  <Link to={basePath + "#anchorContacts"}>Контакти</Link>
+                  <Link to="/#anchorContacts">Контакти</Link>
                 </li>
                 <li>
-                  <Link to={basePath + "#anchorContactUs"}>Форма для зв'язку</Link>
+                  <Link to="/#anchorContactUs">Форма для зв'язку</Link>
                 </li>
               </ul>
             </div>
