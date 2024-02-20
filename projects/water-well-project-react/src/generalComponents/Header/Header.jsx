@@ -1,5 +1,6 @@
 import './Header.css'
 import companyLogo from './../../assets/general/logo-template.png'
+import { basePath } from '../../App';
 
 // import lightThemeIcon from "./../../assets/header/configs/light.png"
 // import languageIcon from "./../../assets/header/configs/language.png"
@@ -9,7 +10,7 @@ const Header = () => {
         <header id="pageHeader">
           <div class="container">
               <div class="logo">
-                <a href="#.">
+                <a href={basePath + "#"}>
                   <img src={companyLogo} alt="Company logo" />
                 </a>
               </div>
@@ -17,19 +18,19 @@ const Header = () => {
               <div class="links">
                 <ul>
                   <li>
-                    <a href="/#anchorAboutUs">Про нас</a>
+                    <a href={basePath + "/#anchorAboutUs"}>Про нас</a>
                   </li>
                   <li>
-                    <a href="/#anchorServices">Прайс</a>
+                    <a href={basePath + "/#anchorServices"}>Прайс</a>
                   </li>
                   <li>
-                    <a href="/#anchorOurWorks">Наші роботи</a>
+                    <a href={basePath + "/#anchorOurWorks"}>Наші роботи</a>
                   </li>
                   <li>
-                    <a href="/#anchorContacts">Контакти</a>
+                    <a href={basePath + "/#anchorContacts"}>Контакти</a>
                   </li>
                   <li>
-                    <a href="/#anchorContactUs">Форма для зв'язку</a>
+                    <a href={basePath + "/#anchorContactUs"}>Форма для зв'язку</a>
                   </li>
                 </ul>
               </div>

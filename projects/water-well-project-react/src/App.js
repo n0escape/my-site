@@ -12,18 +12,19 @@ import './utils/pageUpTrick.js'
 import ScrollToHash from './utils/scrollToHash.js';
 import ScrollToTop from './generalComponents/ScrollToTop/ScrollToTop.jsx';
 
+export const basePath = process.env.NODE_ENV === 'development' ? '/' : '/my-site/projects/water-well-project-react/build';
+
 const App = () => {
-  const basename = process.env.REACT_APP_BASE_URL || '/';
   return (
     <div>
-      <Router basename={basename}>
+      <Router basename={basePath}>
         <ScrollToHash />
         <ScrollToTop />
         <Header />
         <Routes>
-          <Route exact path={basename} element={<MainPage />} />
-          <Route path={basename + "/service/:idFromUrl"} element={<ServicePage />} />
-          <Route path={basename + "/order"} element={<OrderPage />} />
+          <Route exact path={basePath} element={<MainPage />} />
+          <Route path={basePath + "/service/:idFromUrl"} element={<ServicePage />} />
+          <Route path={basePath + "/order"} element={<OrderPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
