@@ -1,0 +1,46 @@
+{
+    "services": [
+      {
+        "id": "pump-installation",
+        "title": "Установка насосів",
+        "description": "Some Lorem Text...",
+        "photos": [
+          "urlPgoto/photo1",
+          "urlPgoto/photo2",
+          "urlPgoto/photo3"
+        ],
+        "whatYouWillGet": [
+          "some text point",
+          "some text point",
+          "some text point",
+          "some text point"
+        ]
+      },
+      {
+        "id": "drilling-of-the-wells",
+        "title": "Буріння скважин",
+        "description": "Some Lorem Text...",
+        "photos": [
+          "urlPgoto/photo1",
+          "urlPgoto/photo2",
+          "urlPgoto/photo3"
+        ],
+        "whatYouWillGet": [
+          "some text point",
+          "some text point",
+          "some text point",
+          "some text point"
+        ]
+      }
+    ],
+    "socialMedia": [
+        {
+          "id": "telegram",
+          "url": "t.me/example"
+        },
+        {
+          "id": "facebook",
+          "url": "facebook.com/example"
+        }
+    ]
+  }

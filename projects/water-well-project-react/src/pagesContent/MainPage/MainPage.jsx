@@ -2,8 +2,28 @@ import './MainPage.css';
 
 import MapFrame from '../../importedComponents/Map/Map.jsx';
 import ContactForm from '../../components/ContactForm/ContactForm.jsx';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const MainPage = () => {
+
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(process.env.PUBLIC_URL +'/data.json');
+        const data = await response.json();
+        setServices(data.services); // Предполагается, что массив объектов находится в поле Services файла data.json
+        console.log(data.services)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="generalOutput">
 
@@ -70,36 +90,12 @@ const MainPage = () => {
       <div id="anchorServices"></div>
       <section id="services">
         <div class="container">
-          <div>
-            <h1>
-              Послуга
-            </h1>
-            <button>Детальніше</button>
-          </div>
-          <div>
-            <h1>
-              Послуга
-            </h1>
-            <button>Детальніше</button>
-          </div>
-          <div>
-            <h1>
-              Послуга
-            </h1>
-            <button>Детальніше</button>
-          </div>
-          <div>
-            <h1>
-              Послуга
-            </h1>
-            <button>Детальніше</button>
-          </div>
-          <div>
-            <h1>
-              Послуга
-            </h1>
-            <button>Детальніше</button>
-          </div>
+          {services.map( service => (
+            <div>
+              <h1>{service.title}</h1>
+              <Link to={`service/${service.id}`}>Детальніше</Link>
+            </div>
+          ))}          
         </div>
       </section>
 
