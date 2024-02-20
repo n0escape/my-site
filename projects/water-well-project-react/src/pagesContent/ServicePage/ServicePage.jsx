@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ServicePage.css'
+import { basePathData } from '../../App';
 
 const ServicePage = () => {
     const [service, setService] = useState(null);
@@ -10,7 +11,7 @@ const ServicePage = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('../data.json');
+          const response = await fetch(basePathData + '/data.json');
           const data = await response.json();
           const serviceData = data.services.find(item => item.id === idFromUrl);
           setService(serviceData);

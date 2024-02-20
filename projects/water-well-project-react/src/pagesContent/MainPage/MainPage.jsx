@@ -4,6 +4,7 @@ import MapFrame from '../../importedComponents/Map/Map.jsx';
 import ContactForm from '../../components/ContactForm/ContactForm.jsx';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { basePathData } from '../../App.js';
 
 const MainPage = () => {
 
@@ -13,7 +14,7 @@ const MainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.PUBLIC_URL +'/data.json');
+        const response = await fetch(basePathData + '/data.json');
         const data = await response.json();
         setServices(data.services); // Предполагается, что массив объектов services находится в поле services файла data.json
         setSocialMedia(data.socialMedia)
