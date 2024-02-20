@@ -10,7 +10,7 @@ const ServicePage = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('/data.json');
+          const response = await fetch(process.env.PUBLIC_URL + '/data.json');
           const data = await response.json();
           const serviceData = data.services.find(item => item.id === idFromUrl);
           setService(serviceData);

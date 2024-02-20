@@ -24,7 +24,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<MainPage />} />
           <Route path="/service/:idFromUrl" element={<ServicePage />} />
-          <Route path="/order" element={<OrderPage />} />
+          <Route path="/order/" element={<OrderPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
