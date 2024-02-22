@@ -39,22 +39,22 @@ const Header = () => {
               </ul>
             </div>
 
-              {/* <div class="configs">
-                <div class="theme">
+              {/* <div className="configs">
+                <div className="theme">
                   <img id="themeIcon" 
                     src={lightThemeIcon} 
                     alt="Theme icon" onclick="toggleTheme()" />
                 </div>
-                <div class="language">
+                <div className="language">
                   <img 
                     src={languageIcon} 
                     alt="Language icon" onclick="toggleLanguageBox()" />
-                  <div class="hiddenLanguageBox">
+                  <div className="hiddenLanguageBox">
                     <ul>
-                      <li><span class="uaLanguage">
+                      <li><span className="uaLanguage">
                         Ua
                       </span></li>
-                      <li><span class="ruLanguage">
+                      <li><span className="ruLanguage">
                         Ru
                       </span></li>
                     </ul>

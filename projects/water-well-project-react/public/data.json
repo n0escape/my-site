@@ -36,11 +36,13 @@
     "socialMedia": [
         {
           "id": "telegram",
-          "url": "t.me/example"
+          "url": "t.me/example",
+          "src": "media/telegram.png"
         },
         {
           "id": "facebook",
-          "url": "facebook.com/example"
+          "url": "facebook.com/example",
+          "src": "media/facebook.png"
         }
     ]
   }

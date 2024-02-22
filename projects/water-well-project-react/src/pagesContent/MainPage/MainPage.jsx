@@ -7,9 +7,19 @@ import { useEffect, useState } from 'react';
 import { basePathData } from '../../App.js';
 
 const MainPage = () => {
-
+  
+  const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
+  const [servicesList, setServicesList] = useState(null);
   const [socialMedia, setSocialMedia] = useState([]);
+
+  const getServicesList = (services) => {
+    let servicesList = [];
+    services.map(service => (
+      servicesList.push({serviceId: service.id, serviceName: service.title})
+    ))
+    return servicesList
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,29 +27,32 @@ const MainPage = () => {
         const response = await fetch(basePathData + '/data.json');
         const data = await response.json();
         setServices(data.services); // Предполагается, что массив объектов services находится в поле services файла data.json
-        setSocialMedia(data.socialMedia)
-      } catch (error) {
-        console.error('Error fetching data:', error);
+        setSocialMedia(data.socialMedia);
+        setServicesList(getServicesList(data.services));
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  console.log(socialMedia)
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   
   return (
     <div className="generalOutput">
 
       <div id="anchorAboutUs"></div>
       <section id="aboutUs">
-        <div class="container">
-          <div class="details">
+        <div className="container">
+          <div className="details">
             <h1>Блок інформації про компанію</h1>
           </div>
-          <div class="features">
+          <div className="features">
 
-            <div class="item1">
+            <div className="item1">
               <div><img src="" alt="" /></div>
               <div>
                 <h4>1</h4>
@@ -47,7 +60,7 @@ const MainPage = () => {
               </div>
             </div>
 
-            <div class="item1">
+            <div className="item1">
               <div><img src="" alt="" /></div>
               <div>
                 <h4>2</h4>
@@ -55,7 +68,7 @@ const MainPage = () => {
               </div>
             </div>
 
-            <div class="item1">
+            <div className="item1">
               <div><img src="" alt="" /></div>
               <div>
                 <h4>3</h4>
@@ -63,7 +76,7 @@ const MainPage = () => {
               </div>
             </div>
 
-            <div class="item1">
+            <div className="item1">
               <div><img src="" alt="" /></div>
               <div>
                 <h4>4</h4>
@@ -71,7 +84,7 @@ const MainPage = () => {
               </div>
             </div>
 
-            <div class="item1">
+            <div className="item1">
               <div><img src="" alt="" /></div>
               <div>
                 <h4>5</h4>
@@ -79,7 +92,7 @@ const MainPage = () => {
               </div>
             </div>
 
-            <div class="item1">
+            <div className="item1">
               <div><img src="" alt="" /></div>
               <div>
                 <h4>6</h4>
@@ -93,11 +106,15 @@ const MainPage = () => {
 
       <div id="anchorServices"></div>
       <section id="services">
-        <div class="container">
+        <div className="container">
           {services.map( service => (
-            <div>
+            <div key={service.id}>
               <h1>{service.title}</h1>
-              <Link to={`service/${service.id}`}>Детальніше</Link>
+              <Link 
+                to={`service/${service.id}`} 
+                state={{ 
+                  allServices: servicesList
+                }}> Детальніше </Link>
             </div>
           ))}          
         </div>
@@ -105,8 +122,8 @@ const MainPage = () => {
 
       <div id="anchorOurWorks"></div>
       <section id="ourWorks">
-        <div class="container">
-          <div class="description">
+        <div className="container">
+          <div className="description">
             <h1>Блоки з результатами роботи + можливо карта з точками виконання</h1>
             <MapFrame content='works'/>
           </div>
@@ -115,20 +132,29 @@ const MainPage = () => {
 
       <div id="anchorContacts"></div>
       <section id="contacts">
-        <div class="container">
-          <div class="description">
+        <div className="container">
+          <div className="description">
             <h1>
               Усі контактні дані (телефон, соц мережі) + карта з адресою
             </h1>
             <MapFrame content='office'/>
+            <ul>
+              {socialMedia && socialMedia.map(contact => (
+                <li key={contact.id}>
+                  <a href={contact.url}>
+                    <img src={contact.src} alt={contact.id} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
       <div id="anchorContactUs"></div>
       <section id="contactUs">
-        <div class="container">
-          <ContactForm />
+        <div className="container">
+          <ContactForm servicesList={servicesList}/>
 
           {/* <form>
             <label>Ім'я</label>

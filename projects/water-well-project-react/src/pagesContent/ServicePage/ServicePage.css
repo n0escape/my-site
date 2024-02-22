@@ -1,3 +1,14 @@
 .container {
     height: 100vh;
 }
+.toOrderBox a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    background-color: darkslategray;
+}
+.containerGallerey {
+    margin-top: 20px;
+}

@@ -9,18 +9,18 @@ import googleIcon from "./../../assets/socialMedias/google.png"
 const Footer = () => {
     return (
       <footer id="pageFooter">
-        <div class="container">
-          <div class="logo">
-              <img class="logoIcon" 
+        <div className="container">
+          <div className="logo">
+              <img className="logoIcon" 
                 src={companyLogo} 
                 alt="Company logo" width="150px" />
-              <p class="adress">
+              <p className="adress">
                 Україна м. Харків вул. Полтавський шлях 10, офіс 302
               </p>
           </div>
-          <div class="services">
+          <div className="services">
             <h2>Наші посуги</h2>
-            <ul class="servicesList">
+            <ul className="servicesList">
               <li>
                 <a href="#.">
                   Послуга
@@ -73,9 +73,9 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div class="ourContacts">
+          <div className="ourContacts">
             <h2>Наші контакти</h2>
-            <ul class="phones">
+            <ul className="phones">
               <li>
                 <a href="#.">
                   +380-xxx-xx-xx
@@ -92,7 +92,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <ul class="socialMedias">
+            <ul className="socialMedias">
               <li>
                 <a href="#.">
                   <img src={facebookIcon} alt="" />
