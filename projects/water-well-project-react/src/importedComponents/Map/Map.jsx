@@ -28,15 +28,6 @@ const MapPlaceholder = () => {
 }
 
 const startPositionWorks = [49.0, 31.0]; // Начальное положение карты
-const markersWorks = [
-  { position: [50.45, 30.5233], title: 'Киев', description:'столица Украины' },
-  { position: [48.45, 35.0167], title: 'Днепр' },
-  { position: [46.48, 30.7326], title: 'Одесса' },
-  // Добавьте больше маркеров при необходимости
-];
-const officePosition = [
-  { position: [50.45, 30.5233], title: 'Офис', description:'Пн-Пт с 8 до 20'}
-]
 
 const MapTemplate = ({startPos, zoomSize, heightContainer, widthContainer, markers}) => {
   return ( 
@@ -50,7 +41,7 @@ const MapTemplate = ({startPos, zoomSize, heightContainer, widthContainer, marke
         {/* Дополнительные слои карты или компоненты могут быть добавлены здесь */}
 
         {markers.map((marker, index) => (
-          <Marker key={index} position={marker.position} icon={defaultIcon}>
+          <Marker key={index} position={marker.location} icon={defaultIcon}>
             <Popup>
               <b>{marker.title}</b>
               <br />
@@ -63,12 +54,12 @@ const MapTemplate = ({startPos, zoomSize, heightContainer, widthContainer, marke
   );
 }
 
-const MapFrame = ({content}) => {
+const MapFrame = ({content, markers}) => {
   switch (content) {
     case 'office':
-    return <MapTemplate startPos={officePosition[0].position} zoomSize={13} heightContainer={'60vh'} widthContainer={'40vw'} markers={officePosition}/>
+    return <MapTemplate startPos={markers[0].location} zoomSize={13} heightContainer={'400px'} widthContainer={'40vw'} markers={markers}/>
     case 'works': 
-    return <MapTemplate startPos={startPositionWorks} zoomSize={5} heightContainer={'50vh'} widthContainer={'90vw'} markers={markersWorks}/>
+    return <MapTemplate startPos={startPositionWorks} zoomSize={5} heightContainer={'400px'} widthContainer={'90vw'} markers={markers}/>
     default: 
     return <div>Error: wrong content param in mapFrame</div>;
   }

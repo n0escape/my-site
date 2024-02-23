@@ -1,11 +1,11 @@
 import './NotFound.css'
 
-const Footer = () => {
+const NotFound = () => {
     return (
-        <div className='container'>
+        <div className='notFound container'>
             Err 404 Not found page on this path
         </div>
     )
 }
 
-export default Footer;
+export default NotFound;

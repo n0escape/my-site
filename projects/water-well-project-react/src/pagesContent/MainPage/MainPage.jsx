@@ -3,43 +3,9 @@ import './MainPage.css';
 import MapFrame from '../../importedComponents/Map/Map.jsx';
 import ContactForm from '../../components/ContactForm/ContactForm.jsx';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { basePathData } from '../../App.js';
+import { useEffect, useRef } from 'react';
 
-const MainPage = () => {
-  
-  const [loading, setLoading] = useState(true);
-  const [services, setServices] = useState([]);
-  const [servicesList, setServicesList] = useState(null);
-  const [socialMedia, setSocialMedia] = useState([]);
-
-  const getServicesList = (services) => {
-    let servicesList = [];
-    services.map(service => (
-      servicesList.push({serviceId: service.id, serviceName: service.title})
-    ))
-    return servicesList
-  }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(basePathData + '/data.json');
-        const data = await response.json();
-        setServices(data.services); // Предполагается, что массив объектов services находится в поле services файла data.json
-        setSocialMedia(data.socialMedia);
-        setServicesList(getServicesList(data.services));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+const MainPage = ({aboutUs, services, ourWorks, contacts, servicesList}) => {
   
   return (
     <div className="generalOutput">
@@ -48,71 +14,36 @@ const MainPage = () => {
       <section id="aboutUs">
         <div className="container">
           <div className="details">
-            <h1>Блок інформації про компанію</h1>
+            <h1>{aboutUs.companyName}</h1>
+            <p>{aboutUs.companyDescription}</p>
           </div>
-          <div className="features">
-
-            <div className="item1">
-              <div><img src="" alt="" /></div>
-              <div>
-                <h4>1</h4>
-                <span>Перевага 1...</span>
-              </div>
+          <div className="featuresBlock">
+            <h3>Обираючи нас ви отримаєте</h3>
+            <div className='featuresContainer'>
+              {
+                aboutUs.advantages.map( avantage => (
+                  <div key={avantage.title} className='feature'>
+                    <h4>{avantage.title}</h4>
+                    <p>{avantage.description}</p>
+                  </div>
+                ))
+              }
             </div>
-
-            <div className="item1">
-              <div><img src="" alt="" /></div>
-              <div>
-                <h4>2</h4>
-                <span>Перевага 2...</span>
-              </div>
-            </div>
-
-            <div className="item1">
-              <div><img src="" alt="" /></div>
-              <div>
-                <h4>3</h4>
-                <span>Перевага 3...</span>
-              </div>
-            </div>
-
-            <div className="item1">
-              <div><img src="" alt="" /></div>
-              <div>
-                <h4>4</h4>
-                <span>Перевага 4...</span>
-              </div>
-            </div>
-
-            <div className="item1">
-              <div><img src="" alt="" /></div>
-              <div>
-                <h4>5</h4>
-                <span>Перевага 5...</span>
-              </div>
-            </div>
-
-            <div className="item1">
-              <div><img src="" alt="" /></div>
-              <div>
-                <h4>6</h4>
-                <span>Перевага 6...</span>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
 
       <div id="anchorServices"></div>
       <section id="services">
+        <h1>Послуги</h1>
         <div className="container">
           {services.map( service => (
             <div key={service.id}>
               <h1>{service.title}</h1>
               <Link 
                 to={`service/${service.id}`} 
-                state={{ 
+                state={{
+                  serviceData: services.find(item => item.id === service.id),
                   allServices: servicesList
                 }}> Детальніше </Link>
             </div>
@@ -123,9 +54,26 @@ const MainPage = () => {
       <div id="anchorOurWorks"></div>
       <section id="ourWorks">
         <div className="container">
-          <div className="description">
-            <h1>Блоки з результатами роботи + можливо карта з точками виконання</h1>
-            <MapFrame content='works'/>
+          <h1>Виконані замовлення</h1>
+          <MapFrame content='works' markers={ourWorks}/>
+          <div className='worksContainer'>
+            {
+              ourWorks.map( work => (
+                <div key={work.title}>
+                  <div className='workItem'>
+                    <div>
+                      <img src={work.imageSrc} alt={work.title} />
+                    </div>
+                    <div>
+                      <h3>{work.title}</h3>
+                      <b><p>{work.date !== null ? work.date : null}</p></b>
+                      <p>{work.description}</p>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              ))
+            }
           </div>
         </div>
       </section>
@@ -133,20 +81,40 @@ const MainPage = () => {
       <div id="anchorContacts"></div>
       <section id="contacts">
         <div className="container">
-          <div className="description">
-            <h1>
-              Усі контактні дані (телефон, соц мережі) + карта з адресою
-            </h1>
-            <MapFrame content='office'/>
-            <ul>
-              {socialMedia && socialMedia.map(contact => (
-                <li key={contact.id}>
-                  <a href={contact.url}>
-                    <img src={contact.src} alt={contact.id} />
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <h1>
+            ...або зв'яжіться з нами за наступними контактами
+          </h1>
+          <div className='contactsBox'>
+            <MapFrame content='office' markers={contacts.offices}/>
+            <div className='contactsContainer'>
+              <div>
+                {contacts.offices.map( (office, index) => (
+                  <p key={index}>{office.address}</p>
+                ))}
+              </div>
+              <div>
+                {contacts.phoneNumbers.map( (phone, index) => (
+                  <p key={index}>{phone.number}</p>
+                ))}
+              </div>
+              <div>
+                {contacts.mailAddresses.map( (mail, index) => (
+                  <p key={index}>{mail.address}</p>
+                ))}
+              </div>
+              <div>
+                <p>{contacts.schedule}</p>
+              </div>
+              <ul>
+                {contacts.socialMedias.map( contact => (
+                  <li key={contact.id}>
+                    <a href={contact.url}>
+                      <img src={contact.src} alt={contact.id} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -155,19 +123,6 @@ const MainPage = () => {
       <section id="contactUs">
         <div className="container">
           <ContactForm servicesList={servicesList}/>
-
-          {/* <form>
-            <label>Ім'я</label>
-            <input type="text" placeholder="Ім'я" />
-            <label>Телефон</label>
-            <input type="tel" placeholder="+380-xxx-xx-xx"/>
-            <label>Пошта</label>
-            <input type="email" placeholder="example@gmail.com"/>
-            <label>Текст повідомлення</label>
-            <textarea name="message" id="message" cols="30" rows="10"></textarea>
-            <input type="submit" value="Відправити"/>
-          </form> */}
-
         </div>
       </section>
       

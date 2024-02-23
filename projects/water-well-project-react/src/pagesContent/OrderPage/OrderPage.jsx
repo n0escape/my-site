@@ -4,15 +4,11 @@ import './OrderPage.css'
 
 const OrderPage = () => {
     let { state } = useLocation();
-    let selectedService
-    if (state === null) {
-        selectedService = null
-    } else {
-        selectedService = state.selectedService
-    }
+    let { selectedServiceFromLink, servicesList } = state;
+    
     return (
-        <div className='container'>
-            <ContactForm selectedService={selectedService} />
+        <div className='orderPage container'>
+            <ContactForm servicesList={servicesList} selectedService={selectedServiceFromLink} />
         </div>
     )
 }

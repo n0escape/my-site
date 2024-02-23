@@ -1,93 +1,123 @@
-import React, { useEffect, useState } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
-import { basePathData } from '../../App';
+// import { useForm, ValidationError } from '@formspree/react';
+import React, { useState } from 'react';
 
-const ContactForm = ({selectedService = null}) => {
-  const [state, handleSubmit] = useForm(process.env.REACT_APP_FORMSPREE_ID);
-  const [servicesList, setServicesList] = useState(null);
-  const [loading, setLoading] = useState(true);
+const ContactForm = ({servicesList, selectedService = null}) => {
 
-  let defaultSelectedValue = 'contactMe';
-  if (selectedService !== null) defaultSelectedValue = selectedService
+  const defaultSelectedValue = 'contactMe';
 
-  const getServicesList = (services) => {
-    let servicesList = [];
-    services.map(service => (
-      servicesList.push({serviceId: service.id, serviceName: service.title})
-    ))
-    return servicesList
-  }
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    topic: selectedService !== null ? selectedService : defaultSelectedValue
+  });
+  const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(basePathData + '/data.json');
-        const data = await response.json();
-        setServicesList(getServicesList(data.services));
-      } finally {
-        setLoading(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const validateEmail = (email) => {
+    // Простая проверка адреса электронной почты с помощью регулярного выражения
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    // Простая проверка номера телефона с помощью регулярного выражения
+    return /^\+380\d{9}$/.test(phone);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Проверка обязательного поля "Name"
+    if (!formData.name) {
+      setErrors({ message: 'Please provide your name' });
+      return;
+    }
+
+    // Проверка, что хотя бы одно из полей (email или phone) заполнено
+    if (!formData.email && !formData.phone) {
+      setErrors({ message: 'Please provide either email or phone number' });
+      return;
+    }
+
+    // Валидация email
+    if (formData.email && !validateEmail(formData.email)) {
+      setErrors({ email: 'Please enter a valid email address' });
+      return;
+    }
+
+    // Валидация номера телефона
+    if (formData.phone && !validatePhone(formData.phone)) {
+      setErrors({ phone: 'Please enter a valid phone number starting with +380' });
+      return;
+    }
+
+    try {
+      const response = await fetch('https://formspree.io/f/meqygzjy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        alert('Your message has been sent successfully!');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          topic: defaultSelectedValue
+        });
+        setErrors({});
+      } else {
+        alert('There was a problem sending your message. Please try again later.');
       }
-    };
-
-    fetchData();
-  }, []);
-
-  
-  if (state.succeeded) {
-    alert("Відправлено")
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('There was a problem sending your message. Please try again later.');
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">
-        Email Address
-      </label>
-      <input
-        id="email"
-        type="email" 
-        name="email"
-      />
-      <ValidationError 
-        prefix="Email" 
-        field="email"
-        errors={state.errors}
-      />
+      <label htmlFor="name">Name:</label><br />
+      <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} /><br />
+
+      <label htmlFor="email">Email:</label><br />
+      <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} /><br />
+
+      <label htmlFor="phone">Phone:</label><br />
+      <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} /><br />
+
       <label htmlFor="order" title="Choose '----' if you want just ask a question or parse your contacts for contact back">
-        Chose your order...
-      </label>
-      <select id="topic" name="topic" defaultValue={defaultSelectedValue}>
-        <option value="contactMe">Зв'яжіться зі мною будь-ласка</option>
-        <option value="question">Питання</option>
-        {
-          servicesList.map(service => ( 
-            <option key={service.serviceId} value={service.serviceId}>{service.serviceName}</option>
-          ))
-        }
-      </select>
-      <label htmlFor="message">
-        Your message
-      </label>
-      <textarea
-        id="message"
-        name="message"
-      />
-      <ValidationError 
-        prefix="Message" 
-        field="message"
-        errors={state.errors}
-      />
-      <button type="submit" disabled={state.submitting}>
-        Submit
-      </button>
+         Chose your order...
+       </label><br />
+       <select id="topic" name="topic" value={formData.topic} onChange={handleChange}>
+         <option value="contactMe">Зв'яжіться зі мною будь-ласка</option>
+         <option value="question">Питання</option>
+         {
+           servicesList.map(service => ( 
+             <option key={service.serviceId} value={service.serviceName}>{service.serviceName}</option>
+           ))
+         }
+       </select><br />
+
+      <label htmlFor="message">Message:</label><br />
+      <textarea id="message" name="message" value={formData.message} onChange={handleChange}></textarea><br />
+
+      {errors.message && <span style={{ color: 'red' }}>{errors.message}</span>}<br />
+
+      <input type="submit" value="Submit" />
     </form>
   );
 }
 
-
 export default ContactForm;
-
-
