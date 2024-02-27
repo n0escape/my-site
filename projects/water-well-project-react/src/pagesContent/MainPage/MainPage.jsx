@@ -94,12 +94,12 @@ const MainPage = ({aboutUs, services, ourWorks, contacts, servicesList}) => {
               </div>
               <div>
                 {contacts.phoneNumbers.map( (phone, index) => (
-                  <p key={index}>{phone.number}</p>
+                  <p key={index}>{phone}</p>
                 ))}
               </div>
               <div>
                 {contacts.mailAddresses.map( (mail, index) => (
-                  <p key={index}>{mail.address}</p>
+                  <p key={index}>{mail}</p>
                 ))}
               </div>
               <div>

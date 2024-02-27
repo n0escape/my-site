@@ -110,7 +110,7 @@
         {
           "id": "facebook",
           "url": "facebook.com/example",
-          "src": "assets/socialMedias/facebook.png"
+          "src": "../src/assets/socialMedias/facebook.png"
         }
       ]
     }
