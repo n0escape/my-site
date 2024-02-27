@@ -58,7 +58,7 @@ const App = () => {
 
   return (
     <div>
-      <Router basename={basePath}>
+      <Router>
         <ScrollToHash />
         <ScrollToTop />
         <Header contacts={contacts}/>
