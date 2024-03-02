@@ -1,117 +1,125 @@
 {
-    "aboutUs": {
-      "companyName": "New Water",
-      "companyDescription": "Lorem text description",
-      "advantages": [
-        {
-          "title": "Advantage title 1",
-          "description": "Mini description about advantage..."
-        },
-        {
-          "title": "Advantage title 2",
-          "description": "Mini description about advantage..."
-        },
-        {
-          "title": "Advantage title 3",
-          "description": "Mini description about advantage..."
-        },
-        {
-          "title": "Advantage title 4",
-          "description": "Mini description about advantage..."
-        },
-        {
-          "title": "Advantage title 5",
-          "description": "Mini description about advantage..."
-        },
-        {
-          "title": "Advantage title 6",
-          "description": "Mini description about advantage..."
-        }
+  "generalIcons": {
+    "logo": "/assets/general/logo-template.png",
+    "toTopIcon": "/assets/general/pageUp.png"
+  },
+  "aboutUs": {
+    "companyName": "New Water",
+    "companyDescription": "Lorem text description",
+    "advantages": [
+      {
+        "title": "Advantage title 1",
+        "description": "Mini description about advantage..."
+      },
+      {
+        "title": "Advantage title 2",
+        "description": "Mini description about advantage..."
+      },
+      {
+        "title": "Advantage title 3",
+        "description": "Mini description about advantage..."
+      },
+      {
+        "title": "Advantage title 4",
+        "description": "Mini description about advantage..."
+      },
+      {
+        "title": "Advantage title 5",
+        "description": "Mini description about advantage..."
+      },
+      {
+        "title": "Advantage title 6",
+        "description": "Mini description about advantage..."
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "pump-installation",
+      "title": "Установка насосів",
+      "minPrice": "3000грн",
+      "description": "Some Lorem Text...",
+      "photos": [
+        "/assets/srevices/pump-installation/Media1.png",
+        "/assets/srevices/pump-installation/Media2.png",
+        "/assets/srevices/pump-installation/Media3.png"
+      ],
+      "whatYouWillGet": [
+        "some text point",
+        "some text point",
+        "some text point",
+        "some text point"
       ]
     },
-    "services": [
-      {
-        "id": "pump-installation",
-        "title": "Установка насосів",
-        "description": "Some Lorem Text...",
-        "photos": [
-          "urlPgoto/photo1",
-          "urlPgoto/photo2",
-          "urlPgoto/photo3"
-        ],
-        "whatYouWillGet": [
-          "some text point",
-          "some text point",
-          "some text point",
-          "some text point"
-        ]
-      },
-      {
-        "id": "drilling-of-the-wells",
-        "title": "Буріння скважин",
-        "description": "Some Lorem Text...",
-        "photos": [
-          "urlPgoto/photo1",
-          "urlPgoto/photo2",
-          "urlPgoto/photo3"
-        ],
-        "whatYouWillGet": [
-          "some text point",
-          "some text point",
-          "some text point",
-          "some text point"
-        ]
-      }
-    ],
-    "ourWorks": [
-      {
-        "title": "Title about work 1",
-        "description": "Mini description about work...",
-        "location": [50.45, 30.5233],
-        "date": null,
-        "imageSrc": "media/works/work1"
-      },
-      {
-        "title": "Title about work 2",
-        "description": "Mini description about work...",
-        "location": [48.45, 35.0167],
-        "date": "13.05.2023"
-      },
-      {
-        "title": "Title about work 3",
-        "description": "Mini description about work...",
-        "location": [46.48, 30.7326],
-        "date": "20.03.2022"
-      }
-    ],
-    "contacts": {
-      "offices": [
-        {
-          "title": "Office name",
-          "location": [50.45, 30.5233],
-          "address": "м. Харків, вул. Полтавський шлях 142"
-        }
+    {
+      "id": "drilling-of-the-wells",
+      "title": "Буріння скважин",
+      "minPrice": "2000грн",
+      "description": "Some Lorem Text...",
+      "photos": [
+        "/assets/srevices/drilling-of-the-wells/Media1.png",
+        "/assets/srevices/drilling-of-the-wells/Media2.png",
+        "/assets/srevices/drilling-of-the-wells/Media3.png"
       ],
-      "phoneNumbers": [
-        "+380-67-345-53-53",
-        "+380-60-424-42-42"
-      ],
-      "mailAddresses": [
-        "exampleEmail@gmail.com",
-        "companyMail@gmail.com"
-      ],
-      "schedule": "Пн-Пт 9:00 - 18:00",
-      "socialMedias": [
-        {
-          "id": "telegram",
-          "url": "t.me/example",
-          "src": "../src/assets/socialMedias/telegram.png"
-        },
-        {
-          "id": "facebook",
-          "url": "facebook.com/example",
-          "src": "../src/assets/socialMedias/facebook.png"
-        }
+      "whatYouWillGet": [
+        "some text point",
+        "some text point",
+        "some text point",
+        "some text point"
       ]
     }
+  ],
+  "ourWorks": [
+    {
+      "title": "Title about work 1",
+      "description": "Mini description about work...",
+      "location": [50.45, 30.5233],
+      "date": null,
+      "imageSrc": "/assets/ourWorks/work1/workImage.png"
+    },
+    {
+      "title": "Title about work 2",
+      "description": "Mini description about work...",
+      "location": [48.45, 35.0167],
+      "date": "13.05.2023",
+      "imageSrc": "/assets/ourWorks/work2/workImage.png"
+    },
+    {
+      "title": "Title about work 3",
+      "description": "Mini description about work...",
+      "location": [46.48, 30.7326],
+      "date": "20.03.2022",
+      "imageSrc": "/assets/ourWorks/work3/workImage.png"
+    }
+  ],
+  "contacts": {
+    "offices": [
+      {
+        "title": "Office name",
+        "location": [50.45, 30.5233],
+        "address": "м. Харків, вул. Полтавський шлях 142"
+      }
+    ],
+    "phoneNumbers": [
+      "+380503455353",
+      "+380675254242"
+    ],
+    "mailAddresses": [
+      "exampleEmail@gmail.com",
+      "companyMail@gmail.com"
+    ],
+    "schedule": "Пн-Пт 9:00 - 18:00",
+    "socialMedias": [
+      {
+        "id": "telegram",
+        "url": "t.me/example",
+        "src": "/assets/socialMedias/telegram.png"
+      },
+      {
+        "id": "facebook",
+        "url": "facebook.com/example",
+        "src": "/assets/socialMedias/facebook.png"
+      }
+    ]
   }
+}

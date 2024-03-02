@@ -1,16 +1,16 @@
 import './App.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NotFound from './pagesContent/NotFound/NotFound.jsx';
-import MainPage from './pagesContent/MainPage/MainPage';
-import ServicePage from './pagesContent/ServicePage/ServicePage';
-import OrderPage from './pagesContent/OrderPage/OrderPage';
-import Header from './generalComponents/Header/Header';
-import Footer from './generalComponents/Footer/Footer';
+import NotFound from './components/pages/NotFound/NotFound.jsx';
+import MainPage from './components/pages/MainPage/MainPage.jsx';
+import ServicePage from './components/pages/ServicePage/ServicePage.jsx';
+import OrderPage from './components/pages/OrderPage/OrderPage.jsx';
+import Header from './components/general/Header/Header.jsx';
+import Footer from './components/general/Footer/Footer.jsx';
 import './utils/pageUpTrick.js'
 
 import ScrollToHash from './utils/scrollToHash.js';
-import ScrollToTop from './generalComponents/ScrollToTop/ScrollToTop.jsx';
+import ScrollToTop from './components/general/ScrollToTop/ScrollToTop.jsx';
 import { useEffect, useState } from 'react';
 
 export const basePath = process.env.NODE_ENV === 'development' ? '/' : '/my-site/projects/water-well-project-react/build';
@@ -19,10 +19,7 @@ export const basePathData = process.env.NODE_ENV === 'development' ? process.env
 const App = () => {
 
   const [loading, setLoading] = useState(true);
-  const [aboutUs, setAboutUs] = useState([]);
-  const [services, setServices] = useState([]);
-  const [ourWorks, setOurWorks] = useState([]);
-  const [contacts, setContacts] = useState([]);
+  const [data, setData] = useState([]);
   const [servicesList, setServicesList] = useState([]);
 
   const getServicesList = (services) => {
@@ -39,10 +36,7 @@ const App = () => {
         const response = await fetch(basePathData + '/data.json');
         const data = await response.json();
 
-        setAboutUs(data.aboutUs);
-        setServices(data.services);
-        setOurWorks(data.ourWorks);
-        setContacts(data.contacts);
+        setData(data);
         setServicesList(getServicesList(data.services))
       } finally {
         setLoading(false);
@@ -58,17 +52,17 @@ const App = () => {
 
   return (
     <div>
-      <Router>
+      <Router basename={basePath}>
         <ScrollToHash />
-        <ScrollToTop />
-        <Header contacts={contacts}/>
+        <ScrollToTop toTopIcon={data.generalIcons.toTopIcon} />
+        <Header logo={data.generalIcons.logo} contacts={data.contacts}/>
         <Routes>
-          <Route exact path="/" element={<MainPage aboutUs={aboutUs} services={services} ourWorks={ourWorks} contacts={contacts} servicesList={servicesList}/>} />
-          <Route path="/service/:idFromUrl" element={<ServicePage />} />
-          <Route path="/order" element={<OrderPage />} />
+          <Route exact path="/" element={<MainPage aboutUs={data.aboutUs} services={data.services} ourWorks={data.ourWorks} contacts={data.contacts} servicesList={servicesList}/>} />
+          <Route path="/service/:idFromUrl" element={<ServicePage services={data.services}/>} />
+          <Route path="/order/:idService" element={<OrderPage servicesList={servicesList} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer contacts={contacts}/>
+        <Footer logo={data.generalIcons.logo} contacts={data.contacts}/>
       </Router>
     </div>
   );
