@@ -1,0 +1,62 @@
+.background {
+    position: fixed;
+    width: 100vw;
+    z-index: -1;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.star,
+.meteor {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.star {
+    box-shadow: 0 0 10px 2px rgba(225, 225, 225, 0.4);
+    animation: star 4s ease-in-out infinite;
+}
+
+.meteor {
+    box-shadow: 0 0 10px 5px rgba(225, 225, 225, 0.3);
+    animation: meteor 5s linear infinite;
+}
+
+.meteor:after {
+    content: '';
+    width: 5px;
+    aspect-ratio: 1/1;
+    background-color: #fff;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    transform: translate(-1%, -1%) rotate(45deg);
+    box-shadow: 0 0 10px 10px rgba(225, 225, 225, 0.3);
+}
+
+@keyframes star {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .8;
+    }
+}
+
+@keyframes meteor {
+    0% {
+        transform: rotate(220deg) translateX(0);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(220deg) translateX(-500px);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,181 @@
+@import url("@/assets/styles/variables.css");
+
+.about {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+
+	height: auto;
+}
+
+.about > * {
+	flex: 1;
+}
+
+.imageWrapper {
+	height: 600px;
+	width: auto;
+}
+
+.imageWrapper img {
+	height: 100%;
+	width: auto;
+	border-radius: 30%;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: flex-start;
+	text-align: start;
+	gap: 20px;
+
+	height: 100%;
+}
+
+.content strong {
+	color: var(--light-blue);
+}
+
+.interests {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: start;
+	text-align: start;
+	gap: 20px;
+}
+
+.interests__item {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+	text-align: start;
+	gap: 4px;
+}
+
+.interests__icon {
+	width: 30px;
+	height: 30px;
+	color: var(--text-color);
+}
+
+.buttonsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    text-align: start;
+    gap: 12px;
+}
+
+.buttonMore__anchor,
+.buttonCV__anchor {
+	text-decoration: none;
+	display: inline-block;
+	font-family: sans-serif;
+	font-weight: 600;
+	border-radius: 50px;
+	padding: 14px 40px 13px;
+	overflow: hidden;
+	position: relative;
+}
+
+.buttonMore__anchor {
+	color: var(--light-blue);
+	border: 2px solid var(--primary-color);
+}
+
+.buttonCV__anchor {
+	color: var(--primary-color);
+	border: 2px solid var(--light-blue);
+}
+
+.buttonCV__anchor:hover {
+	color: var(--text-color);
+}
+
+.buttonCV__anchor:hover {
+	color: var(--text-color);
+}
+
+.buttonMore a::before,
+.buttonCV a::before {
+	position: absolute;
+	content: "";
+	z-index: 0;
+	left: -5px;
+	right: -5px;
+	bottom: -5px;
+	height: 111%;
+	transition: all 0.3s ease;
+}
+
+.buttonMore a::before {
+    background-color: var(--primary-color);
+}
+
+.buttonCV a::before {
+    background-color: var(--light-blue);
+}
+
+.buttonMore a:hover::before,
+.buttonCV a:hover::before {
+	height: 11%;
+}
+
+.buttonMore span,
+.buttonCV span {
+	position: relative;
+	z-index: 2;
+	transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 1024px) {
+	.about {
+		flex-direction: column;
+	}
+
+	.about > * {
+		flex: initial;
+	}
+
+	.imageWrapper {
+		height: 320px;
+		aspect-ratio: 2/1;
+	}
+
+	.imageWrapper img {
+		width: 100%;
+		height: auto;
+		border-radius: 16px;
+	}
+	
+}
+
+@media screen and (max-width: 768px) {
+	.imageWrapper {
+		width: 100%;
+		height: auto;
+	}
+
+	.interests {
+		flex-wrap: wrap;
+	}
+
+	.buttonsWrapper {
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.buttonsWrapper > *,
+	.buttonsWrapper > * > * {
+		width: 100%;
+		text-align: center;
+	}
+}

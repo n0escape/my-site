@@ -1,0 +1,17 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg
+    stroke-width="2"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    fill="none"
+    height="16px"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20px"
+>
+    <path
+        d="M14 5l7 7m0 0l-7 7m7-7H3"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+    ></path>
+</svg>

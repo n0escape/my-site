@@ -1,0 +1,127 @@
+@import url("@/assets/styles/variables.css");
+
+header {
+	position: sticky;
+	padding: 40px 60px;
+	top: 0;
+	width: 100%;
+	height: var(--header-height);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--primary-color);
+	z-index: var(--header-z);
+}
+
+header > * {
+	z-index: var(--header-z);
+}
+
+.nickname {
+	font-size: 1.5rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+}
+
+.links {
+	display: flex;
+	gap: 20px;
+
+	list-style: none;
+}
+
+.links a {
+	color: var(--text-color);
+	font-size: 1.2rem;
+}
+
+.sideMenu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--primary-color);
+	z-index: 99;
+}
+
+.sideMenu > * {
+	z-index: 99;
+}
+
+.sideMenu ul {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+	list-style: none;
+	padding: 40px;
+	height: 100%;
+}
+
+.sideMenu ul a {
+	color: var(--text-color);
+	font-size: 1.5rem;
+	font-weight: 800;
+}
+
+.hamburger {
+	cursor: pointer;
+	display: none;
+	z-index: 100;
+}
+
+.hamburger input {
+	display: none;
+}
+
+.hamburger svg {
+	/* The size of the SVG defines the overall size */
+	height: 3em;
+	/* Define the transition for transforming the SVG */
+	transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+	fill: none;
+	stroke: white;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 3;
+	/* Define the transition for transforming the Stroke */
+	transition:
+		stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+		stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lineTopBottom {
+	stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked + svg {
+	transform: rotate(-45deg);
+}
+
+.hamburger input:checked + svg .lineTopBottom {
+	stroke-dasharray: 20 300;
+	stroke-dashoffset: -32.42;
+}
+
+@media screen and (max-width: 768px) {
+	header {
+		padding: 20px 40px;
+	}
+
+	.nickname {
+		font-size: 1.2rem;
+	}
+
+	.links {
+		display: none;
+	}
+
+	.hamburger {
+		display: block;
+	}
+}

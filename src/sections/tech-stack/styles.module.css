@@ -1,0 +1,50 @@
+.header {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 12px;
+}
+
+.toolbox,
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.content {
+	overflow-x: clip;
+	mask-image: linear-gradient(
+		to right,
+		transparent,
+		black 10%,
+		black 90%,
+		transparent
+	);
+}
+
+.content {
+	gap: 20px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.toolset {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 10px;
+}
+
+.toolsetItem {
+	flex: none;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 5px 10px;
+	border: 2px solid azure;
+	border-radius: 10px;
+}
+
+.toolsetItem img {
+	height: 50px;
+}

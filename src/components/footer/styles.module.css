@@ -1,0 +1,14 @@
+@import url("@/assets/styles/variables.css");
+
+footer {
+    margin-top: 60px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: var(--header-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-color);
+    z-index: 0;
+}

@@ -1,0 +1,198 @@
+@import url("@/assets/styles/variables.css");
+
+.hero {
+    margin-top: 0;
+    height: 100vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px
+}
+
+.text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 20px 0;
+    text-align: left;
+}
+
+.text p,
+.text h1 {
+    font-weight: 800;
+    font-size: 2.8rem;
+}
+.text .positon {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.text .name {
+    color: crimson;
+}
+
+.imageWrapper {
+    height: 70%;
+    padding-top: 20px;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    background: linear-gradient(rgba(0, 38, 255, 0.5), rgba(200, 255, 255, 0.5));
+}
+
+.imageWrapper img {
+    height: 100%;
+}
+
+.callToAction a {
+    color: var(--text-color);
+}
+
+.callToAction,.callToAction::after {
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    background-color: transparent;
+    position: relative;
+}
+
+.callToAction::after {
+    --move1: inset(50% 50% 50% 50%);
+    --move2: inset(31% 0 40% 0);
+    --move3: inset(39% 0 15% 0);
+    --move4: inset(45% 0 40% 0);
+    --move5: inset(45% 0 6% 0);
+    --move6: inset(14% 0 61% 0);
+    clip-path: var(--move1);
+    content: 'GLITCH';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+}
+
+.callToAction:hover::after {
+    animation: glitch_4011 1s;
+    text-shadow: 10 10px 10px black;
+    animation-timing-function: steps(2, end);
+    text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #E94BE8;
+    background-color: transparent;
+    border: 3px solid rgb(0, 255, 213);
+}
+
+.callToAction:hover {
+    text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #E94BE8;
+}
+
+.callToAction {
+    width: auto;
+    background-color: transparent;
+    border: 1px solid rgb(0, 255, 213);
+    box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
+
+@keyframes glitch_4011 {
+    0% {
+        clip-path: var(--move1);
+        transform: translate(0px,-10px);
+    }
+
+    10% {
+        clip-path: var(--move2);
+        transform: translate(-10px,10px);
+    }
+
+    20% {
+        clip-path: var(--move3);
+        transform: translate(10px,0px);
+    }
+
+    30% {
+        clip-path: var(--move4);
+        transform: translate(-10px,10px);
+    }
+
+    40% {
+        clip-path: var(--move5);
+        transform: translate(10px,-10px);
+    }
+
+    50% {
+        clip-path: var(--move6);
+        transform: translate(-10px,10px);
+    }
+
+    60% {
+        clip-path: var(--move1);
+        transform: translate(10px,-10px);
+    }
+
+    70% {
+        clip-path: var(--move3);
+        transform: translate(-10px,10px);
+    }
+
+    80% {
+        clip-path: var(--move2);
+        transform: translate(10px,-10px);
+    }
+
+    90% {
+        clip-path: var(--move4);
+        transform: translate(-10px,10px);
+    }
+
+    100% {
+        clip-path: var(--move1);
+        transform: translate(0);
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    .hero {
+        flex-direction: column-reverse;
+        justify-content: start;
+        gap: 40px;
+
+        height: auto;
+    }
+    
+    .imageWrapper {
+        height: 500px;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        gap: 20px;
+    }
+    
+    .imageWrapper {
+        width: 100%;
+        height: auto;
+    }
+
+    .imageWrapper img{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .text p,
+    .text h1 {
+        font-size: 1.5rem;
+    }
+
+    .text .positon {
+        font-size: 1rem;
+    }
+}
