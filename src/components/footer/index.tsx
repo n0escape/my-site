@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import s from "./styles.module.css"
 
 type FooterProps = {}
 const Footer: FC<FooterProps> = ({}) => {

@@ -1,5 +1,5 @@
 import { gsap } from "gsap"
-import { type FC, Fragment, useEffect, useLayoutEffect, useRef } from "react"
+import { type FC, useLayoutEffect, useRef } from "react"
 
 import cssIcon from "@/assets/images/tech-stack/css-logo.svg"
 import figmaIcon from "@/assets/images/tech-stack/figma-logo.svg"
